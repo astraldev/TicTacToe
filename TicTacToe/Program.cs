@@ -200,7 +200,7 @@ namespace TicTacToe
         {
           Clear();
           DisplayBoard(false);
-          Write("There is no winner. Restart game? [y/n] :");
+          Write("There is no winner. Restart game? [y/n] : ");
           var restart = ReadKey(false);
           WriteLine("");
           while (restart.Key != ConsoleKey.Y && restart.Key != ConsoleKey.N) restart = ReadKey(true);

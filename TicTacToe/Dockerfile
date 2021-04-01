@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:latest 
+FROM mcr.microsoft.com/dotnet/sdk:latest AS build-env
 
 RUN mkdir app 
 
@@ -10,6 +10,8 @@ RUN dotnet publish -c Release -o out
 
 WORKDIR /app
 
-COPY /out .
+FROM mcr.microsoft.com/dotnet/runtime:5.0
 
-ENTRYPOINT [ "dotnet", "CSharp.dll" ]
+COPY --from=build-env /app/out .
+
+ENTRYPOINT [ "dotnet", "TicTacToe.dll" ]
